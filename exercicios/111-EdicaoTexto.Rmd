@@ -1,0 +1,382 @@
+---
+title: "Exercícios: EdicaoTexto"
+author: "Renato A. Ferreira de Lima"
+date: "2024-08-10"
+output: 
+html_document:
+    toc: true
+    toc_float:
+      collapsed: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# 111.01 Localizando e substituindo caracteres
+
+## Enunciado
+
+Crie um vetor chamado <code>frutas</code> contendo os seguintes elementos nesta ordem: "Banana", "Maça", "kiwi" e "Pêssego".
+
+Calcule e guarde em objeto chamado <code>tamanho</code> o número de caracteres de cada elemento de texto do objeto <code>frutas</code>.
+
+Guarde em objeto chamado <code>frutas.sem.a</code> os elementos de <code>frutas</code> que não contém a letra 'a'.
+
+Substitua todas as vogais de cada elemento por letras maiúsculas e guarde o resultado em um objeto chamado <code>vogais</code>.  
+
+Por fim, guarde em um objeto chamado <code>minusculas</code> as frutas que não começam por uma letra maiúscula.  
+
+<div style="width:100%;background-color:LightSteelBlue;color:white; padding:15px;border-top:1px; padding-top:1px;border-radius:30px;">
+<b>Dicas</b>: para a substituição das vogais veja o help das funções ''sub'' ou ''gsub''.
+</p> 
+</div>
+
+
+
+## Solução
+
+```{r }
+frutas <- c("Banana", "Maça", "kiwi", "Pêssego")
+tamanho <- nchar(frutas) 
+frutas.sem.a <- frutas[!grepl("a", frutas, ignore.case = TRUE)]
+vogais <- gsub("([aeiouê])", "\\U\\1", frutas, perl = TRUE)
+minusculas <- frutas[grepl("^[a-z]", frutas)]   
+
+```
+
+
+<!-- ## Precondições -->
+
+<!-- ` -->
+<!-- ``{r } -->
+<!-- tab_ok <-  read.table("http://notar.ib.usp.br/arquivo/32", header = TRUE, sep = ",") -->
+<!-- lm_ok <- lm(cap ~ local, data = tab_ok) -->
+<!-- set.seed(42) -->
+<!-- ``` -->
+
+## Testes
+
+```{r }
+exists("frutas") ## Objeto <code>frutas</code> não foi criado, verifique a grafia do nome.
+class(frutas)=="character" ## A classe do objeto <code>frutas</code> não está correta. Deve ser da classe <code>character</code>, verifique.
+
+all(frutas == c("Banana", "Maça", "kiwi", "Pêssego")) ## Os valores guardados no vetor <code>frutas</code> não estão corretos, verifique.
+
+exists("tamanho") ## Objeto <code>tamanho</code> não foi criado, verifique a grafia do nome.
+length(tamanho)==4L ## O comprimento do objeto <code>tamanho</code> não está correto.
+all(tamanho == c(6, 4, 4, 7)) ## Os valores guardados no vetor <code>finais</code> não estão corretos, verifique.
+
+
+exists("frutas.sem.a") ## Objeto <code>frutas.sem.a</code> não foi criado, verifique a grafia do nome.
+length(frutas.sem.a)==2L ## O comprimento do objeto <code>frutas.sem.a</code> não está correto.
+all(frutas.sem.a == c("kiwi", "Pêssego")) ## Os valores guardados no vetor <code>frutas.sem.a</code> não estão corretos, verifique.
+
+
+exists("vogais") ## Objeto <code>vogais</code> não foi criado, verifique a grafia do nome.
+length(vogais)==4L ## O comprimento do objeto <code>vogais</code> não está correto.
+all(vogais == c("BAnAnA", "MAçA", "kIwI", "PÊssEgO")) ## Os valores guardados no vetor <code>vogais</code> não estão corretos, verifique.
+
+
+exists("minusculas") ## Objeto <code>minusculas</code> não foi criado, verifique a grafia do nome.
+length(minusculas)==1L ## O comprimento do objeto <code>minusculas</code> não está correto.
+minusculas == "kiwi" ## Os valores guardados no vetor <code>minusculas</code> não estão corretos, verifique.
+
+```
+
+<br/><br/>
+
+# 111.02 Nomes de morfoespécies
+
+## Enunciado
+
+<script>$(document).ready(function(){$('[data-toggle="tooltip"]').tooltip();});</script>
+
+Crie um vetor com 50 nomes de morfoespécies e guarde o vetor no objeto chamado <code>morfo</code>. O primeiro nome deve ser "Indet. sp01" e o último "Indet. sp50".
+
+    <div style="width:100%;background-color:LightSteelBlue;color:white; padding:15px; border-top:1px; padding-top:1px;border-radius:30px;">
+<b>Dicas</b>: veja o help das funções ''paste'' ou ''paste0'' para descobrir quais argumentos podem te ajudar nesse exercício.</p> 
+</div>
+
+
+
+## Solução
+
+```{r }
+
+morfo <- paste0("Indet. sp", 1:50)
+morfo[nchar(morfo) < 11] <- 
+  gsub("(sp)([0-9])", "sp0\\2", morfo[nchar(morfo) < 11], perl = TRUE)
+
+
+solucao <- paste0("Indet. sp", 1:50)
+solucao[nchar(solucao)<11] <- gsub("(sp)([0-9])", "sp0\\2", solucao[nchar(solucao)<11], perl = TRUE);
+
+```
+
+
+<!-- ## Precondições -->
+
+<!-- ` -->
+<!-- ``{r } -->
+<!-- tab_ok <-  read.table("http://notar.ib.usp.br/arquivo/32", header = TRUE, sep = ",") -->
+<!-- lm_ok <- lm(cap ~ local, data = tab_ok) -->
+<!-- set.seed(42) -->
+<!-- ``` -->
+
+## Testes
+
+
+
+```{r }
+exists("morfo") ## Objeto <code>morfo</code> não foi criado, verifique a grafia do nome.
+class(morfo)=="character" ## A classe do objeto <code>morfo</code> não está correta. Deve ser da classe <code>character</code>, verifique.
+length(morfo)==50L ## O comprimento do objeto <code>morfo</code> não está correto. Ele deve ter comprimento igual a 50, verifique.
+all(morfo == solucao) ## Os valores guardados no vetor <code>morfo</code> não estão corretos, verifique.
+```
+
+
+<br/><br/>
+
+# 111.03 Data das finais da copa do mundo
+
+## Enunciado
+
+<script>$(document).ready(function(){$('[data-toggle="tooltip"]').tooltip();});</script>
+
+Visando praticar as suas habilidades na concatenação e colagem de caracteres de texto, execute as seguintes tarefas:
+
+Crie 3 vetores chamados <code>dia</code>, <code>mes</code> e <code>ano</code> com 3 elementos cada um, contendo os dias, meses e anos das três últimas finais da copa do mundo de futebol nas quais o Brasil foi campeão: 21/06/1970, 17/07/1994 e 30/06/2002.
+
+A partir desses 3 vetores, construa um quarto vetor chamado 'finais' com as datas no formato 'dia mês ano' separados por 'de' (e.g. '5 de Março de 1981').  
+
+A partir dos mesmos 3 vetores, construa um quinto vetor chamado 'finais1' com as datas no formato 'dia mes ano', mas agora separados por '-', com o mês abreviado e apenas os dois últimos dígitos (e.g. '5-Mar-81').
+
+
+<div style="width:100%;background-color:LightSteelBlue;color:white; padding:15px; border-top:1px; padding-top:1px;border-radius:30px;">
+<b>Dicas</b>: veja o help das funções ''paste'' para descobrir quais argumentos podem te ajudar nesse exercício. Veja também o help das funções de corte ou abreviação de caracteres, que podem ser úteis nesse exercício.</p> 
+</div>
+
+
+
+## Solução
+
+```{r }
+dia <- c(21, 17, 30)
+mes <- c("Junho", "Julho", "Junho")
+ano <- c(1970, 1994, 2002)
+
+finais <- paste(dia, mes, ano, sep = " de ")
+
+finais1 <- paste(dia, 
+                 substr(mes, 1, 3), 
+                 substr(ano, 3, 4), 
+                 sep = "-")
+
+finais2 <- paste(
+            paste(finais[1:(length(finais)-1)], collapse = ", "),
+            finais[length(finais)], 
+            sep = " e ")
+
+```
+
+
+<!-- ## Precondições -->
+
+<!-- ` -->
+<!-- ``{r } -->
+<!-- tab_ok <-  read.table("http://notar.ib.usp.br/arquivo/32", header = TRUE, sep = ",") -->
+<!-- lm_ok <- lm(cap ~ local, data = tab_ok) -->
+<!-- set.seed(42) -->
+<!-- ``` -->
+
+## Testes
+
+
+
+```{r }
+exists("dia") ## Objeto <code>dia</code> não foi criado, verifique a grafia do nome.
+all(dia == c(21, 17, 30)) ## Os valores guardados no vetor <code>dia</code> não estão corretos, verifique.
+
+exists("mes") ## Objeto <code>mes</code> não foi criado, verifique a grafia do nome.
+all(mes == c("Junho", "Julho", "Junho")) ## Os valores guardados no vetor <code>mes</code> não estão corretos, verifique.
+
+exists("ano") ## Objeto <code>ano</code> não foi criado, verifique a grafia do nome.
+all(ano == c(1970, 1994, 2002)) ## Os valores guardados no vetor <code>ano</code> não estão corretos, verifique.
+
+
+exists("finais") ## Objeto <code>finais</code> não foi criado, verifique a grafia do nome.
+class(finais)=="character" ## A classe do objeto <code>finais</code> não está correta. Deve ser da classe <code>character</code>, verifique.
+length(finais)==3L ## O comprimento do objeto <code>finais</code> não está correto. Ele deve ter comprimento igual a três, verifique.
+all(finais == c("21 de Junho de 1970", "17 de Julho de 1994", "30 de Junho de 2002")) ## Os valores guardados no vetor <code>finais</code> não estão corretos, verifique.
+
+exists("finais1") ## Objeto <code>finais1</code> não foi criado, verifique a grafia do nome.
+class(finais1)=="character" ## A classe do objeto <code>finais1</code> não está correta. Deve ser da classe <code>character</code>, verifique.
+length(finais1)==3L ## O comprimento do objeto <code>finais1</code> não está correto. Ele deve ter comprimento igual a três, verifique.
+all(finais1 == c("21-Jun-70", "17-Jul-94", "30-Jun-02")) ## Os valores guardados no vetor <code>finais1</code> não estão corretos, verifique.
+
+exists("finais2") ## Objeto <code>finais2</code> não foi criado, verifique a grafia do nome.
+class(finais2)=="character" ## A classe do objeto <code>finais2</code> não está correta. Deve ser da classe <code>character</code>, verifique.
+length(finais2)==1L ## O comprimento do objeto <code>finais2</code> não está correto. Ele deve ter comprimento igual a três, verifique.
+finais2 == "21 de Junho de 1970, 17 de Julho de 1994 e 30 de Junho de 2002" ## Os valores guardados no vetor <code>finais2</code> não estão corretos, verifique.
+
+
+```
+
+
+<br/><br/>
+
+# 111.04 Síndrome de dispersão e ameaça de extinção
+
+## Enunciado
+
+<script>$(document).ready(function(){$('[data-toggle="tooltip"]').tooltip();});</script>
+
+O objetivo deste exercício é extrair informações armazenadas em colunas e organizá-las em um vetor de texto reunindo todas as informações disponíveis. Para isso, iremos usar nomes de espécies e suas informações sobre síndrome de dispersão e categoria de ameaça de extinção da IUCN. 
+
+Criei o objeto <code>especies</code> usando os códigos abaixo:
+
+```{r }
+especies <- data.frame(
+              especie = c("Chrysophyllum viride", "Cordia silvestris",
+                        "Esenbeckia leiocarpa", "Tabebuia cassinoides"),
+              atributos = c("zoochoric_NT", "zoochoric_LC", 
+                            "autochoric_LC", "anemochoric_EN")  
+)
+```
+  
+Em seguida, manipule o data.frame <code>especies</code> visando obter um novo objeto chamado <code>descricao</code>, que é vetor de caracteres com comprimento igual a 4  contendo o nome da espécie e seus atributos combinados da seguinte forma (exemplo para a primeira espécie):
+"Chrysophyllum viride é uma espécie zoocórica e categoria de ameaça 'Quase ameaçada'"
+
+<div style="width:100%;background-color:LightSteelBlue;color:white; padding:15px; border-top:1px; padding-top:1px;border-radius:30px;">
+<b>Dicas</b>: veja a página do wikipedia para a tradução dos códigos dass categorias de ameaça em português: https://pt.wikipedia.org/wiki/Lista_Vermelha_da_IUCN 
+</p> 
+</div>
+
+
+
+## Solução
+
+```{r }
+especies <- data.frame(
+              especie = c("Chrysophyllum viride", "Cordia silvestris",
+                        "Esenbeckia leiocarpa", "Tabebuia cassinoides"),
+              atributos = c("zoochoric_NT", "zoochoric_LC", 
+                            "autochoric_LC", "anemochoric_EN"))
+tmp <- do.call(rbind.data.frame, strsplit(especies$atributos, "_"))
+tmp[[1]] <- sub("zoochoric", "zoocórica", tmp[[1]])
+tmp[[1]] <- sub("autochoric", "autocórica", tmp[[1]])
+tmp[[1]] <- sub("anemochoric", "anemocórica", tmp[[1]])
+
+tmp[[2]] <- sub("NT", "Quase ameaçada", tmp[[2]])
+tmp[[2]] <- sub("LC", "Pouco preocupante", tmp[[2]])
+tmp[[2]] <- sub("EN", "Em perigo", tmp[[2]])
+
+descricao <- paste0(especies$especie, " é uma espécie ", tmp[[1]],
+                   " e categoria de ameaça ", tmp[[2]])
+
+```
+
+
+<!-- ## Precondições -->
+
+<!-- ` -->
+<!-- ``{r } -->
+<!-- tab_ok <-  read.table("http://notar.ib.usp.br/arquivo/32", header = TRUE, sep = ",") -->
+<!-- lm_ok <- lm(cap ~ local, data = tab_ok) -->
+<!-- set.seed(42) -->
+<!-- ``` -->
+
+## Testes
+
+
+
+```{r }
+exists("especies") ## Objeto <code>especies</code> não foi criado, verifique a grafia do nome.
+class(especies)=="data.frame" ## A classe do objeto <code>especies</code> não está correta. Deve ser da classe <code>data.frame</code>, verifique.
+
+
+exists("descricao") ## Objeto <code>descricao</code> não foi criado, verifique a grafia do nome.
+class(descricao)=="character" ## A classe do objeto <code>descricao</code> não está correta. Deve ser da classe <code>character</code>, verifique.
+length(descricao)==4L ## O comprimento do objeto <code>descricao</code> não está correto. Ele deve ter comprimento igual a quatro, verifique.
+all(descricao == 
+      c("Chrysophyllum viride é uma espécie zoocórica e categoria de ameaça 'Quase ameaçada'", "Cordia silvestris é uma espécie zoocórica e categoria de ameaça 'Pouco preocupante'", "Esenbeckia leiocarpa é uma espécie autocórica e categoria de ameaça 'Pouco preocupante'", "Tabebuia cassinoides é uma espécie anemocórica e categoria de ameaça 'Em perigo'")) ## Os valores guardados no vetor <code>descricao</code> não estão corretos, verifique.
+
+```
+
+
+<br/><br/>
+
+# 111.05 Nomes de cores do R
+
+## Enunciado
+
+<script>$(document).ready(function(){$('[data-toggle="tooltip"]').tooltip();});</script>
+
+O objetivo deste exercício é usar expressões regulares para extrair informações de vetores de texto. Iremos usar o vetor de 657 nomes de cores do R para esse exercício, vetor que pode ser obtido usando a função <code>colors()</code>.
+
+Guarde em objeto chamado <code>amarelo</code> todas a cores contendo a palavra 'yellow'.
+
+Guarde em objeto chamado <code>vogais</code> todas as cores que começam ou terminam com uma vogal.
+
+Guarde em objeto chamado <code>Nduplo</code> todas as cores que contém duas letras n seguidas.
+
+Guarde em objeto chamado <code>dark.numb</code> todas as cores que começam com a palavra 'dark' e terminam com números.
+
+
+## Solução
+
+```{r }
+cores <- colors()
+
+amarelo <- cores[grepl("yellow", cores)]
+
+vogais <- cores[grepl("^[aeiou]|[aeiou]$", cores)]
+
+Nduplo <- cores[grepl("n{2}", cores)]
+
+dark.numb <- cores[grepl("^dark", cores) & grepl("[0-9]$", cores)]
+
+```
+
+
+<!-- ## Precondições -->
+
+<!-- ` -->
+<!-- ``{r } -->
+<!-- tab_ok <-  read.table("http://notar.ib.usp.br/arquivo/32", header = TRUE, sep = ",") -->
+<!-- lm_ok <- lm(cap ~ local, data = tab_ok) -->
+<!-- set.seed(42) -->
+<!-- ``` -->
+
+## Testes
+
+
+
+```{r }
+exists("amarelo") ## Objeto <code>amarelo</code> não foi criado, verifique a grafia do nome.
+class(amarelo)=="character" ## A classe do objeto <code>amarelo</code> não está correta. Deve ser da classe <code>character</code>, verifique.
+length(amarelo)==13L ## O comprimento do objeto <code>descricao</code> não está correto. 
+all(sort(amarelo) == sort(colors()[grepl("yellow", colors())])) ## Os valores guardados no vetor <code>amarelo</code> não estão corretos, verifique.
+
+
+exists("vogais") ## Objeto <code>vogais</code> não foi criado, verifique a grafia do nome.
+class(vogais)=="character" ## A classe do objeto <code>vogais</code> não está correta. Deve ser da classe <code>character</code>, verifique.
+length(vogais)==94L ## O comprimento do objeto <code>vogais</code> não está correto. 
+all(sort(vogais) == sort(colors()[grepl("^[aeiou]|[aeiou]$", colors())])) ## Os valores guardados no vetor <code>vogais</code> não estão corretos, verifique.
+
+
+exists("Nduplo") ## Objeto <code>Nduplo</code> não foi criado, verifique a grafia do nome.
+class(Nduplo)=="character" ## A classe do objeto <code>Nduplo</code> não está correta. Deve ser da classe <code>character</code>, verifique.
+length(Nduplo)==5L ## O comprimento do objeto <code>Nduplo</code> não está correto. 
+all(sort(Nduplo) == sort(colors()[grepl("n{2}", colors())])) ## Os valores guardados no vetor <code>Nduplo</code> não estão corretos, verifique.
+
+exists("dark.numb") ## Objeto <code>dark.numb</code> não foi criado, verifique a grafia do nome.
+class(dark.numb)=="character" ## A classe do objeto <code>dark.numb</code> não está correta. Deve ser da classe <code>character</code>, verifique.
+length(dark.numb)==24L ## O comprimento do objeto <code>dark.numb</code> não está correto. 
+all(sort(dark.numb) == sort(colors()[grepl("^dark", colors()) & grepl("[0-9]$", colors())])) ## Os valores guardados no vetor <code>Nduplo</code> não estão corretos, verifique.
+
+
+
+```
+

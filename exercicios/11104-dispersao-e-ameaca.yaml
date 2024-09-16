@@ -1,0 +1,29 @@
+name: '111.04 Síndrome de dispersão e ameaça de extinção'
+description: |-
+    <p> O objetivo deste exercício é extrair informações armazenadas em colunas e organizá-las em um vetor de texto reunindo todas as informações disponíveis. 
+    <p> Para isso, iremos usar nomes de espécies e suas informações sobre síndrome de dispersão e categoria de ameaça de extinção da IUCN contidas na tabela abaixo.
+    
+    <table class="table table-striped table-bordered"><thead><tr><td><b>especie</b></td><td><b>atributos</b></td></tr></thead><tbody>    <tr><td> Chrysophyllum viride </td><td> zoochoric_NT </td></tr><tr><td> Cordia silvestris </td><td> zoochoric_LC </td></tr><tr><td> Esenbeckia leiocarpa </td><td> autochoric_LC </td></tr><tr><td> Tabebuia cassinoides </td><td> anemochoric_EN </td></tr></tbody></table>
+
+    <p> Baseado nas informações acima:
+    <ol>
+    <li> Crie um <b>data frame</b> chamado <code>especies</code> conforme a tabela acima;</li>
+    <li> Manipule o data.frame <code>especies</code> visando obter um novo objeto chamado <code>descricao</code>, que é um vetor de caracteres com comprimento igual a 4 contendo o nome da espécie e seus atributos combinados da seguinte forma (exemplo para a primeira espécie): "Chrysophyllum viride é uma espécie zoocórica e categoria de ameaça Quase ameaçada".</li>
+    </ol>
+    
+    <div style="width:100%;background-color:LightSteelBlue;color:white; padding:15px; border-top:1px; padding-top:1px;border-radius:30px;">
+    <b>Dicas</b>: veja a página do wikipedia para a tradução dos códigos dass categorias de ameaça em português: https://pt.wikipedia.org/wiki/Lista_Vermelha_da_IUCN 
+    </div>
+
+precondicoes: ''
+topico_id: 1
+testes:
+    - { condicao: 'exists("especies")', dica: 'O objeto <code>especies</code> não foi criado, verifique a grafia do nome.', peso: 1.0 }
+    - { condicao: 'class(especies)=="data.frame"', dica: 'A classe do objeto <code>especies</code> não está correta. Deve ser da classe <code>data.frame</code>, verifique.', peso: 1.0 }
+    - { condicao: 'exists("descricao")', dica: 'Objeto <code>descricao</code> não foi criado, verifique a grafia do nome.', peso: 1.0 }
+    - { condicao: 'class(descricao)=="character"', dica: 'A classe do objeto <code>descricao</code> não está correta. Ele deve ser da classe <code>character</code>, verifique.', peso: 1.0 }
+    - { condicao: 'length(descricao)==4L', dica: 'O comprimento do objeto <code>descricao</code> não está correto. Ele deve ter comprimento igual a quatro, verifique.', peso: 1.0 }
+    - { condicao: 'all(descricao == c("Chrysophyllum viride é uma espécie zoocórica e categoria de ameaça Quase ameaçada", "Cordia silvestris é uma espécie zoocórica e categoria de ameaça Pouco preocupante", "Esenbeckia leiocarpa é uma espécie autocórica e categoria de ameaça Pouco preocupante", "Tabebuia cassinoides é uma espécie anemocórica e categoria de ameaça Em perigo"))', dica: 'Os valores guardados no vetor <code>descricao</code> não estão corretos, verifique.', peso: 6.0 }
+
+
+    

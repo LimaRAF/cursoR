@@ -1,0 +1,15 @@
+name: '111.02 Nomes de morfoespécies'
+description: |-
+    <p> Crie um vetor com 50 nomes de morfoespécies e guarde o vetor no objeto chamado <code>morfo</code>. O primeiro nome deve ser "Indet. sp01" e o último "Indet. sp50".
+
+    <div style="width:100%;background-color:LightSteelBlue;color:white; padding:15px; border-top:1px; padding-top:1px;border-radius:30px;">
+    <b>Dicas</b>: veja o help das funções ''paste'' ou ''paste0'' para descobrir quais argumentos podem te ajudar nesse exercício.</p> 
+    </div>
+
+precondicoes: ''
+topico_id: 1
+testes:
+    - { condicao: 'exists("morfo")', dica: 'Objeto <code>morfo</code> não foi criado, verifique a grafia do nome.', peso: 1.0 }
+    - { condicao: 'class(morfo)=="character"', dica: 'A classe do objeto <code>morfo</code> não está correta. Deve ser da classe <code>character</code>, verifique.', peso: 1.0 }
+    - { condicao: 'length(morfo)==50L', dica: 'O comprimento do objeto <code>morfo</code> não está correto. Ele deve ter comprimento igual a 50, verifique.', peso: 2.0 }
+    - { condicao: 'solucao <- paste0("Indet. sp", 1:50); solucao[nchar(solucao)<11] <- gsub("(sp)([0-9])", "sp0\\2", solucao[nchar(solucao)<11], perl = TRUE);all(morfo == solucao)', dica: 'Objeto <code>vogais</code> não foi criado, verifique a grafia do nome.', peso: 3.0 }

@@ -1,0 +1,30 @@
+name: '111.01 Localizando e substituindo caracteres'
+description: |-
+    <p> Baseado nas funções de manipulação de texto apresentadas em aula e no tutorial de edição de texto, execute as seguintes tarefas:
+    <ol>
+    <li> Crie um vetor chamado <code>frutas</code> contendo os seguintes elementos nesta ordem: "Banana", "Maça", "kiwi" e "Pêssego";</li>
+    <li> Calcule e guarde em objeto chamado <code>tamanho</code> o número de caracteres de cada elemento de texto do objeto <code>frutas</code>;</li>
+    <li> Guarde em objeto chamado <code>frutas.sem.a</code> os elementos de <code>frutas</code> que não contém a letra 'a';</li>
+    <li> Substitua todas as vogais de cada elemento por letras maiúsculas e guarde o resultado em um objeto chamado <code>vogais</code>;</li>
+    <li> Por fim, guarde em um objeto chamado <code>minusculas</code> as frutas que não começam por uma letra maiúscula.</li>
+    </ol>
+    
+    <div style="width:100%;background-color:LightSteelBlue;color:white; padding:15px; border-top:1px; padding-top:1px;border-radius:30px;">
+    <b>Dicas</b>: para a substituição das vogais veja o help das funções ''sub'' ou ''gsub''.
+    </div>
+
+precondicoes: ''
+topico_id: 1
+testes:
+    - { condicao: 'exists("frutas.sem.a")', dica: 'Objeto <code>frutas.sem.a</code> não foi criado, verifique a grafia do nome.', peso: 1.0 }
+    - { condicao: 'length(frutas.sem.a)==2L', dica: 'o comprimento do objeto <code>frutas.sem.a</code> não está correto.', peso: 1.0 }
+    - { condicao: 'all(frutas.sem.a == c("kiwi", "Pêssego"))', dica: 'Os valores guardados no vetor <code>frutas.sem.a</code> não estão corretos, verifique.', peso: 4.0 }
+    - { condicao: 'exists("vogais")', dica: 'Objeto <code>vogais</code> não foi criado, verifique a grafia do nome.', peso: 1.0 }
+    - { condicao: 'length(vogais)==4L', dica: 'O comprimento do objeto <code>vogais</code> não está correto.', peso: 1.0 }
+    - { condicao: 'all(vogais == c("BAnAnA", "MAçA", "kIwI", "PÊssEgO"))', dica: 'Os valores guardados no vetor <code>vogais</code> não estão corretos, verifique.', peso: 4.0 }
+    - { condicao: 'exists("minusculas")', dica: 'Objeto <code>minusculas</code> não foi criado, verifique a grafia do nome.', peso: 1.0 }
+    - { condicao: 'length(minusculas)==1L', dica: 'O comprimento do objeto <code>minusculas</code> não está correto.', peso: 1.0 }
+    - { condicao: 'minusculas == "kiwi"', dica: 'Os valores guardados no vetor <code>minusculas</code> não estão corretos, verifique.', peso: 4.0 }
+
+    
+    

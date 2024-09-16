@@ -1,0 +1,17 @@
+name: 'INSERIR AQUI O TITULO'
+description: |-
+    <p> INSERIR AQUI O ENUNCIADO E USAR <code> seu codigo() </code> PARA CÓDIGOS
+    <ol>
+    <li> ITEM 1 DA LISTA DE TAREFAS; </li>
+    <li> ITEM 2 DA LISTA DE TAREFAS;</li>
+    </ol>
+    
+    <div style="width:100%;background-color:LightSteelBlue;color:white; padding:15px; border-top:1px; padding-top:1px;border-radius:30px;">
+    <b>Dicas</b>: INCLUA AQUI AS SUAS DICAS 
+    </div>
+
+precondicoes: 'SE HOUVER'
+topico_id: 1
+testes:
+    - { condicao: 'INSERIR AQUI O TESTE LOGICO', dica: 'INSERIR AQUI A DICA', peso: 1.0 }
+    - { condicao: 'INSERIR AQUI O TESTE LOGICO', dica: 'INSERIR AQUI A DICA', peso: 1.0 }

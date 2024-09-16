@@ -1,0 +1,33 @@
+name: '111.05 Nomes de cores do R'
+description: |-
+    <p> O objetivo deste exercício é usar expressões regulares para extrair informações de vetores de texto. Iremos usar o vetor de 657 nomes de cores do R para esse exercício, vetor que pode ser obtido usando a função <code>colors()</code>.
+    <p> A partir desse vetor de cores:
+    <ol>
+    <li> Guarde em objeto chamado <code>amarelo</code> todas a cores contendo a palavra 'yellow';</li>
+    <li> Guarde em objeto chamado <code>vogais</code> todas as cores que começam ou terminam com uma vogal;</li>
+    <li> Guarde em objeto chamado <code>Nduplo</code> todas as cores que contém duas letras n seguidas;</li>
+    <li> Guarde em objeto chamado <code>dark.numb</code> todas as cores que começam com a palavra 'dark' e terminam com números.</li>
+    </ol>
+    
+precondicoes: ''
+topico_id: 1
+testes:
+    - { condicao: 'exists("amarelo")', dica: 'Objeto <code>amarelo</code> não foi criado, verifique a grafia do nome.', peso: 1.0 }
+    - { condicao: 'class(amarelo)=="character"', dica: 'A classe do objeto <code>amarelo</code> não está correta. Deve ser da classe <code>character</code>, verifique.', peso: 1.0 }
+    - { condicao: 'length(amarelo)==13L', dica: 'O comprimento do objeto <code>descricao</code> não está correto.', peso: 1.0 }
+    - { condicao: 'all(sort(amarelo) == sort(colors()[grepl("yellow", colors())]))', dica: 'Os valores guardados no vetor <code>amarelo</code> não estão corretos, verifique.', peso: 4.0 }
+
+    - { condicao: 'exists("vogais")', dica: 'Objeto <code>vogais</code> não foi criado, verifique a grafia do nome.', peso: 1.0 }
+    - { condicao: 'class(vogais)=="character"', dica: 'A classe do objeto <code>vogais</code> não está correta. Deve ser da classe <code>character</code>, verifique.', peso: 1.0 }
+    - { condicao: 'length(vogais)==94L', dica: 'O comprimento do objeto <code>descricao</code> não está correto.', peso: 1.0 }
+    - { condicao: 'all(sort(vogais) == sort(colors()[grepl("^[aeiou]|[aeiou]$", colors())]))', dica: 'Os valores guardados no vetor <code>vogais</code> não estão corretos, verifique.', peso: 4.0 }
+
+    - { condicao: 'exists("Nduplo")', dica: 'Objeto <code>Nduplo</code> não foi criado, verifique a grafia do nome.', peso: 1.0 }
+    - { condicao: 'class(Nduplo)=="character"', dica: 'A classe do objeto <code>Nduplo</code> não está correta. Deve ser da classe <code>character</code>, verifique.', peso: 1.0 }
+    - { condicao: 'length(Nduplo)==5L', dica: 'O comprimento do objeto <code>descricao</code> não está correto.', peso: 1.0 }
+    - { condicao: 'all(sort(Nduplo) == sort(colors()[grepl("n{2}", colors())]))', dica: 'Os valores guardados no vetor <code>Nduplo</code> não estão corretos, verifique.', peso: 4.0 }
+
+    - { condicao: 'exists("dark.numb")', dica: 'Objeto <code>dark.numb</code> não foi criado, verifique a grafia do nome.', peso: 1.0 }
+    - { condicao: 'class(dark.numb)=="character"', dica: 'A classe do objeto <code>dark.numb</code> não está correta. Deve ser da classe <code>character</code>, verifique.', peso: 1.0 }
+    - { condicao: 'length(dark.numb)==24L', dica: 'O comprimento do objeto <code>descricao</code> não está correto.', peso: 1.0 }
+    - { condicao: 'all(sort(dark.numb) == sort(colors()[grepl("^dark", colors()) & grepl("[0-9]$", colors())]))', dica: 'Os valores guardados no vetor <code>dark.numb</code> não estão corretos, verifique.', peso: 4.0 }
